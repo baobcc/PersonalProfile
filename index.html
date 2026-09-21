@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danh Thiếp Điện Tử</title>
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --btn-bg: rgba(255, 255, 255, 0.06);
+      --btn-hover: rgba(255, 255, 255, 0.12);
+      --btn-border: rgba(255, 255, 255, 0.1);
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.12) 0px, transparent 50%);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 36px 24px 28px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 104px;
+      height: 104px;
+      margin: 0 auto 18px;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+
+    .name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .headline {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .bio {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      margin-bottom: 24px;
+      padding: 0 8px;
+    }
+
+    /* Action Buttons (Call / Save Contact) */
+    .primary-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .btn-save {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    .btn-save:active {
+      transform: scale(0.97);
+      background: #e2e8f0;
+    }
+
+    .btn-call {
+      background: var(--btn-bg);
+      color: var(--text-primary);
+      border: 1px solid var(--btn-border);
+    }
+
+    .btn-call:active {
+      transform: scale(0.97);
+      background: var(--btn-hover);
+    }
+
+    /* Links Stack */
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      border-radius: 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .link-item:hover, .link-item:active {
+      background: var(--btn-hover);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .link-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .link-icon {
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arrow-icon {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      transition: transform 0.2s ease;
+    }
+
+    .link-item:active .arrow-icon {
+      transform: translateX(3px);
+    }
+
+    footer {
+      margin-top: 26px;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <!-- ẢNH ĐẠI DIỆN -->
+    <!-- Thay đường link ảnh của bạn vào thuộc tính src -->
+    <div class="avatar-wrapper">
+      <img class="avatar" src="Avatar.jpg" alt="Avatar" />
+    </div>
+
+    <!-- THÔNG TIN CHÍNH -->
+    <h1 class="name">Bùi Công Chí Bảo</h1>
+    <p class="headline">Computer Science - HCMUT</p>
+    <p class="bio">2550011</p>
+
+    <!-- NÚT HÀNH ĐỘNG NHANH -->
+    <div class="primary-actions">
+      <!-- Nút tạo file danh bạ vCard tự động không cần server -->
+      <button class="action-btn btn-save" onclick="downloadVCard()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+          <polyline points="17 21 17 13 7 13 7 21"></polyline>
+          <polyline points="7 3 7 8 15 8"></polyline>
+        </svg>
+        Lưu Danh Bạ
+      </button>
+
+      <!-- Nút gọi điện thoại trực tiếp -->
+      <a class="action-btn btn-call" href="tel:0901234567">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        Gọi Điện
+      </a>
+    </div>
+
+    <!-- DANH SÁCH MẠNG XÃ HỘI & LIÊN KẾT -->
+    <div class="link-list">
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/bao.buicongchi" target="_blank" rel="noopener" class="link-item">
+        <div class="link-left">
+          <div class="link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </div>
+          <span>Facebook Cá Nhân</span>
+        </div>
+        <span class="arrow-icon">→</span>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/baorrrr.104/" target="_blank" rel="noopener" class="link-item">
+        <div class="link-left">
+          <div class="link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </div>
+          <span>Instagram</span>
+        </div>
+        <span class="arrow-icon">→</span>
+      </a>
+
+      <!-- LinkedIn
+      <a href="https://linkedin.com/in/ten_cua_ban" target="_blank" rel="noopener" class="link-item">
+        <div class="link-left">
+          <div class="link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </div>
+          <span>LinkedIn</span>
+        </div>
+        <span class="arrow-icon">→</span>
+      </a> -->
+
+      <!-- Email -->
+      <a href="mailto:1004.buicongchibao@gmail.com" class="link-item">
+        <div class="link-left">
+          <div class="link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <span>Gửi Email</span>
+        </div>
+        <span class="arrow-icon">→</span>
+      </a>
+    </div>
+
+    <footer>
+      NFC Contact Card
+    </footer>
+  </main>
+
+  <script>
+    // Hàm tự động xuất file vCard (.vcf) khi bấm "Lưu Danh Bạ"
+    function downloadVCard() {
+      const contact = {
+        name: "Bùi Công Chí Bảo",
+        title: "Com Sci Stu",
+        phone: "090146897",
+        email: "1004.buicongchibao@gmail.com",
+        url: window.location.href
+      };
+
+      const vcardData = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        `FN:${contact.name}`,
+        `TITLE:${contact.title}`,
+        `TEL;TYPE=CELL:${contact.phone}`,
+        `EMAIL;TYPE=INTERNET:${contact.email}`,
+        `URL:${contact.url}`,
+        "END:VCARD"
+      ].join("\n");
+
+      const blob = new Blob([vcardData], { type: "text/vcard;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute("download", `${contact.name.replace(/\s+/g, "_")}.vcf`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>
